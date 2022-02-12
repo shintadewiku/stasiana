@@ -9,6 +9,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Include the above in your HEAD tag -->
 
 	<style type="text/css">
 
@@ -31,158 +35,187 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <nav style="background: transparent; color: white; border-color: transparent;" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" style="color: white" href="<?php echo site_url('welcome/index')?>">STASIANA</a>
+      <a class="navbar-brand" style="color: white" href="<?php echo site_url('Welcome/index')?>">STASIANA</a>
       <br><br>
       <h6>Sistem Pelaporan Lokasi Rawan Bencana</h6>
     </div>
     <ul class="nav navbar-nav">
-      <li><a style="color: white" href="<?php echo site_url('welcome/index')?>">Beranda</a></li>
-      <li><a style="color: white"; href="<?php echo site_url('welcome/lacak')?>">Lacak</a></li>
-      <li><a style="color: white"; href="<?php echo site_url('welcome/berita')?>">Berita</a></li>
-      <li><a style="color: white"; href="<?php echo site_url('welcome/bantuan')?>">Kontak</a></li>
+      <li><a style="color: white" href="<?php echo site_url('Welcome/index')?>">Beranda</a></li>
+      <li><a style="color: white"; href="<?php echo site_url('Welcome/lacak')?>">Lacak</a></li>
+      <li><a style="color: white"; href="<?php echo site_url('Welcome/berita')?>">Berita</a></li>
+      <li><a style="color: white"; href="<?php echo site_url('Welcome/bantuan')?>">Kontak</a></li>
     </ul>
   </div>
 </nav>
 <br> <br>
-<button type="button" class="btn btn-success"><a style="color: white" href="<?php echo site_url('welcome/login')?>"> <span style="text-align:left"> Kembali </a> </button> <br> <br>
+<button type="button" class="btn btn-info"><a style="color: white" href="<?php echo site_url('Welcome/login')?>"> <span style="text-align:left"> Kembali </a> </button>
 
-<div id="container">
-<fieldset>
-<legend style="background-color: #2262cc; color: white;"><h2 style="text-align: center;">Form Pelaporan Lokasi Rawan Bencana</h2></legend>
-<hr style="border-color: #2262cc; border-width: 10px"> <br> <br>
 
-	<div id="body">
-		<form action="<?php echo site_url('welcome/insert')?>" method="post" enctype="multipart/form-data">
+<div class="container">    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div style="font-size: 20px;" class="panel-title">FORM PELAPORAN LOKASI RAWAN BENCANA</div>
+                    </div> 
+                    <div id="body">
+                    <form action="<?php echo site_url('Welcome/insert')?>" method="post" enctype="multipart/form-data">    
 
-		<fieldset>
-		<legend style="border-color: #2262cc">IDENTITAS</legend>
-		<form>
-  <div class="form-row">
-    <div class="col"> Nama Lengkap
-      <input type="text" onkeypress="return huruf(event)" name="nama" maxlength="30" required class="form-control" placeholder="Nama Lengkap">
-      		<script>
-			function huruf(evt) {
-				var charCode = (evt.which) ? evt.which : event.keyCode
-				if ((charCode < 65) || (charCode == 32))
-					return false;
-					return true; }
-			</script>
+                    <div style="padding-top:30px" class="panel-body" >
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+
+                        <legend style="border-color: #baecff;">IDENTITAS</legend>    
+                        <form id="loginform" class="form-horizontal" role="form">
+                                    
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input type="text" name="nama" maxlength="40" required class="form-control" placeholder="Nama Lengkap">                                  
+                                    </div>
+                                
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+                                        <input type="text" onkeypress="return angka(event)" maxlength="25" name="ktp" required class="form-control" placeholder="Nomor KTP">
+                                        <script>
+                                        function angka(evt) {
+                                          var charCode = (evt.which) ? evt.which : event.keyCode
+                                          if (charCode > 31 && (charCode < 48 || charCode > 57))
+                                            return false;
+                                          return true; }
+                                          </script>
+                                    </div>
+                              
+                              <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input type="email" maxlength="30" name="email" required class="form-control" placeholder="Email">
+                              </div>
+
+                              <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input type="text" onkeypress="return angka(event)" maxlength="13" name="tel" required class="form-control" placeholder="Nomor Telepon">
+                                        <script>
+                                        function angka(evt) {
+                                          var charCode = (evt.which) ? evt.which : event.keyCode
+                                          if (charCode > 31 && (charCode < 48 || charCode > 57))
+                                            return false;
+                                          return true; }
+                                          </script>
+                              </div>
+
+                              <legend style="border-color: #baecff;">INFORMASI BENCANA</legend>
+
+                              <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-tree-deciduous"></i></span>
+                                        <input type="text" onkeypress="return huruf(event)" maxlength="30" name="jenis" required class="form-control" placeholder="Jenis Bencana">
+                                        <script>
+                                        function huruf(evt) {
+                                          var charCode = (evt.which) ? evt.which : event.keyCode
+                                          if ((charCode < 65) || (charCode == 32))
+                                            return false;
+                                          return true; }
+                                          </script>
+                              </div>
+
+                              
+                              <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <select type="text" name="provinsi" class="form-control">
+                                        <option>Pilih Provinsi</option>
+                                        <option>Aceh</option>
+                                        <option>Bali</option>
+                                        <option>Banten</option>
+                                        <option>Bengkulu</option>
+                                        <option>Gorontalo</option>
+                                        <option>Jakarta</option>
+                                        <option>Jambi</option>
+                                        <option>Jawa Barat</option>
+                                        <option>Jawa Tengah</option>
+                                        <option>Jawa Timur</option>
+                                        <option>Kalimantan Barat</option>
+                                        <option>Kalimantan Selatan</option>
+                                        <option>Kalimantan Tengah</option>
+                                        <option>Kalimantan Timur</option>
+                                        <option>Kalimantan Utara</option>
+                                        <option>Kepulauan Bangka Belitung</option>
+                                        <option>Kepulauan Riau</option>
+                                        <option>Lampung</option>
+                                        <option>Maluku</option>
+                                        <option>Maluku Utara</option>
+                                        <option>Nusa Tenggara Timur</option>
+                                        <option>Papua Barat</option>
+                                        <option>Riau</option>
+                                        <option>Sulawesi Barat</option>
+                                        <option>Sulawesi Selatan</option>
+                                        <option>Sulawesi Tengah</option>
+                                        <option>Sulawesi Tenggara</option>
+                                        <option>Sulawesi Utara</option>
+                                        <option>Sumatera Barat</option>
+                                        <option>Sumatera Selatan</option>
+                                        <option>Sumatera Utara</option>
+                                        <option>Yogyakarta</option>
+                                        </select>
+                                        </div>
+
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input type="text" maxlength="100" name="kota" required class="form-control" placeholder="Kabupaten/Kota">
+                              </div>
+
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input type="text" maxlength="100" name="kec" required class="form-control" placeholder="Kecamatan">
+                              </div>
+
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input type="text" maxlength="100" name="alamat" required class="form-control" placeholder="Alamat Lengkap">
+                              </div>
+
+                              
+
+                              <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
+                                        <input type="text" onkeypress="return angka(event)" maxlength="5" name="pos" required class="form-control" placeholder="Kode Pos">
+                                        <script>
+                                        function angka(evt) {
+                                          var charCode = (evt.which) ? evt.which : event.keyCode
+                                          if (charCode > 31 && (charCode < 48 || charCode > 57))
+                                            return false;
+                                          return true; }
+                                          </script>
+                              </div>
+
+                              <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                        <input type="text" maxlength="50" name="lokasi" class="form-control" placeholder="Lokasi (URL)">
+                              </div>
+
+                              <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"> </i></span>
+                                        <input type="textarea" maxlength="300" name="deskripsi" required class="form-control" placeholder="Deskripsi">
+                              </div>
+
+                              <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                                        <input type="file" name="input_gambar" id="bukti" class="form-control">
+                              </div>
+
+                              <!-- <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+                              </div> -->
+                              <input class="btn btn-success btn-lg btn-block" type="submit" name="submit" value="Kirim Laporan">
+                                                            
+                              <!-- <button type="submit" class="btn btn-primary">Primary</button> -->
+                                
+                                
+                            </form>
+                         </div>
+                    </div>
+                
+         </div> 
     </div>
-
-  <div class="col"> Nomor Kartu Tanda Penduduk (KTP)
-      <input type="text" onkeypress="return angka(event)" maxlength="25" name="ktp" required class="form-control" placeholder="Nomor KTP">
-      		<script>
-    		function angka(evt) {
-      			var charCode = (evt.which) ? evt.which : event.keyCode
-       			if (charCode > 31 && (charCode < 48 || charCode > 57))
-        			return false;
-        			return true; }
-    		</script>
-    </div>
-
-    <div class="col"> Email
-      <input type="email" maxlength="30" name="email" required class="form-control" placeholder="Email">
-    </div>
-
-    <div class="col"> Nomor Telepon
-      <input type="text" onkeypress="return angka(event)" maxlength="13" name="tel" required class="form-control" placeholder="Nomor Telepon">
-      		<script>
-    		function angka(evt) {
-      			var charCode = (evt.which) ? evt.which : event.keyCode
-       			if (charCode > 31 && (charCode < 48 || charCode > 57))
-        			return false;
-        			return true; }
-    		</script>
-    </div>
-
-</fieldset> <br> <br>
-
-
-	<fieldset>
-	<legend style="border-color: #5998ff">INFORMASI BENCANA</legend>
-	<div class="col"> Jenis Bencana
-      <input type="text" onkeypress="return huruf(event)" maxlength="30" name="jenis" required class="form-control" placeholder="Jenis Bencana">
-      <script>
-			function huruf(evt) {
-				var charCode = (evt.which) ? evt.which : event.keyCode
-				if ((charCode < 65) || (charCode == 32))
-					return false;
-					return true; }
-			</script>
-    </div>
-
- 	<div class="col"> Alamat Lengkap
-      <input type="text" maxlength="100" name="alamat" required class="form-control" placeholder="Alamat Lengkap">
-    </div>
-    
-    <div class="col"> Provinsi
-      <select type="text" name="provinsi" class="form-control">
-      		<option>Pilih Provinsi</option>
-      		<option>Aceh</option>
-			<option>Bali</option>
-			<option>Banten</option>
-			<option>Bengkulu</option>
-			<option>Gorontalo</option>
-			<option>Jakarta</option>
-			<option>Jambi</option>
-			<option>Jawa Barat</option>
-			<option>Jawa Tengah</option>
-			<option>Jawa Timur</option>
-			<option>Kalimantan Barat</option>
-			<option>Kalimantan Selatan</option>
-			<option>Kalimantan Tengah</option>
-			<option>Kalimantan Timur</option>
-			<option>Kalimantan Utara</option>
-			<option>Kepulauan Bangka Belitung</option>
-			<option>Kepulauan Riau</option>
-			<option>Lampung</option>
-			<option>Maluku</option>
-			<option>Maluku Utara</option>
-			<option>Nusa Tenggara Barat</option>
-			<option>Nusa Tenggara Timur</option>
-			<option>Papua</option>
-			<option>Papua Barat</option>
-			<option>Riau</option>
-			<option>Sulawesi Barat</option>
-			<option>Sulawesi Selatan</option>
-			<option>Sulawesi Tengah</option>
-			<option>Sulawesi Tenggara</option>
-			<option>Sulawesi Utara</option>
-			<option>Sumatera Barat</option>
-			<option>Sumatera Selatan</option>
-			<option>Sumatera Utara</option>
-			<option>Yogyakarta</option>
-		</select>
-    </div>
-
-    <div class="col"> Kode Pos
-      <input type="text" onkeypress="return angka(event)" maxlength="5" name="pos" required class="form-control" placeholder="Kode Pos">
-      		<script>
-    		function angka(evt) {
-      			var charCode = (evt.which) ? evt.which : event.keyCode
-       			if (charCode > 31 && (charCode < 48 || charCode > 57))
-        			return false;
-        			return true; }
-    		</script>
-    </div>   
-
-    <div class="col"> Lokasi
-      <input type="text" maxlength="50" name="lokasi" required class="form-control" placeholder="Lokasi">
-    </div>
-
-    <div class="col"> Deskripsi 
-      <input type="text" maxlength="300" name="deskripsi" required class="form-control" placeholder="Deskripsi">
-    </div>
-
-    <div class="col"> Bukti
-    <td>(pilih gambar untuk diunggah)</td>
-      <input type="file" name="input_gambar" id="bukti" class="form-control">
-    </div>
-    <input type="submit" name="upload" value="upload image">
-    <input type="submit" name="submit" value="Kirim Laporan">
-</form>
-</fieldset>
-</fieldset>
+    </form>
+  </div> 
 
 </body>
 <?php require 'footer.php' ?>

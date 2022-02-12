@@ -11,6 +11,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
+
+<style type="text/css">
+  .modal {
+   position: absolute;
+   top: 150px;
+   right: 100px;
+   bottom: 0;
+   left: 100px;
+   z-index: 10040;
+   overflow: auto;
+   overflow-y: auto;
+}
+</style>
+
 <body style="background-image: url(https://images2.alphacoders.com/719/719970.jpg)">
 <nav style="background: transparent; color: white; border-color: transparent;" class="navbar navbar-default">
   <div class="container-fluid">
@@ -27,39 +41,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </ul>
   </div>
 </nav>
-<div id="body" >
-  
-<div class="container">
-<div class = "text-center">
+<div class="modal fade account-modal in" id="step1" data-backdrop="true" aria-hidden="false" style="display:block; object-position: bottom;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="font-size: 50px; text-align: center; background-color: ">ID LAPORAN ANDA</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal form-feedback-out " role="form" > <br>
+                    <div class="form-group has-feedback" style="font-size: 80px; text-align: center; color: #245cb7">
+                    <?php
 
-<div><h2 class="badge badge-pill badge-dark" style="color: white; font-weight: bold; font-size: 30px;" >LOGIN SEBAGAI</h2>  </div> <br>
-
-<a class= "btn btn-danger btn-lg btn-block" style = "color: white; font-weight: bold;" href="<?php echo site_url('Welcome/login_masyarakat')?>">MASYARAKAT
-      <p style="font-size: 16px; color: #e5d7d7;">Pelapor</p></a>
-
-<a class="btn btn-warning btn-lg btn-block" style = "color: white; font-weight: bold" href="<?php echo site_url('Welcome/login_bnpb')?>">BNPB 
-      <p style="font-size: 16px; color: #e5d7d7;">Badan Nasional Penanggulangan Bencana</p> </a>
-
-<a class="btn btn-success btn-lg btn-block" style = "color: white; font-weight: bold" href="<?php echo site_url('Welcome/login_bpbd')?>">BPBD 
-      <p style="font-size: 16px; color: #e5d7d7;"">Badan Penanggulangan Bencana Daerah</p> </a>
-
-<a class="btn btn-info btn-lg btn-block" style = "color: white; font-weight: bold" href="<?php echo site_url('Welcome/login_dinas')?>">DINAS PUPR
-      <p style="font-size: 16px; color: #e5d7d7;">Dinas Pekerjaan Umum dan Penataan Ruang</p> </a>
-<br> <br>
-
-  </div>
+      if( ! empty($data_laporan)){
+        // $no = 1;
+          echo "<tr>";
+            echo "<td>".$data_laporan->no."</td>";
+              echo "</tr>";
+      } 
+ ?>
+                        
+</div>
+<a href="<?php echo site_url('Welcome/index')?>" class="btn btn-lg btn-danger pull-right">Keluar</a> <br> <br>
 </div>
 </div>
-		
-	</div>
-  
-
 </div>
-
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
-
 <?php 
 require 'footer.php'; 
 ?>
-
 </html>
+
+
+

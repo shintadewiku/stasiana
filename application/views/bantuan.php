@@ -34,15 +34,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <nav style="background: transparent; color: white; border-color: transparent;" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" style="color: white" href="<?php echo site_url('welcome/index')?>">STASIANA</a>
+      <a class="navbar-brand" style="color: white" href="<?php echo site_url('Welcome/index')?>">STASIANA</a>
       <br><br>
       <h6>Sistem Pelaporan Lokasi Rawan Bencana</h6>
     </div>
     <ul class="nav navbar-nav">
-      <li><a style="color: white" href="<?php echo site_url('welcome/index')?>">Beranda</a></li>
-      <li><a style="color: white"; href="<?php echo site_url('welcome/lacak')?>">Lacak</a></li>
-      <li><a style="color: white"; href="<?php echo site_url('welcome/berita')?>">Berita</a></li>
-      <li class="active"><a style="color: black"; href="<?php echo site_url('welcome/bantuan')?>">Kontak</a></li>
+      <li><a style="color: white" href="<?php echo site_url('Welcome/index')?>">Beranda</a></li>
+      <li><a style="color: white"; href="<?php echo site_url('Welcome/lacak')?>">Lacak</a></li>
+      <li><a style="color: white"; href="<?php echo site_url('Welcome/berita')?>">Berita</a></li>
+      <li class="active"><a style="color: black"; href="<?php echo site_url('Welcome/bantuan')?>">Kontak</a></li>
     </ul>
   </div>
 </nav>

@@ -16,15 +16,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="container-fluid">
     <div class="navbar-header">
     <!-- <img src="logo stasiana.png" > -->
-      <a class="navbar-brand" style="color: white" href="<?php echo site_url('welcome/index')?>">STASIANA</a>
+      <a class="navbar-brand" style="color: white" href="<?php echo site_url('Welcome/index')?>">STASIANA</a>
       <br><br>
       <h6>Sistem Pelaporan Lokasi Rawan Bencana</h6>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a style="color: black" href="<?php echo site_url('welcome/index')?>">Beranda</a></li>
-      <li><a style="color: white"; href="<?php echo site_url('welcome/lacak')?>">Lacak</a></li>
-      <li><a style="color: white"; href="<?php echo site_url('welcome/berita')?>">Berita</a></li>
-      <li><a style="color: white"; href="<?php echo site_url('welcome/bantuan')?>">Kontak</a></li>
+      <li class="active"><a style="color: black" href="<?php echo site_url('Welcome/index')?>">Beranda</a></li>
+      <li><a style="color: white"; href="<?php echo site_url('Welcome/lacak')?>">Lacak</a></li>
+      <li><a style="color: white"; href="<?php echo site_url('Welcome/berita')?>">Berita</a></li>
+      <li><a style="color: white"; href="<?php echo site_url('Welcome/bantuan')?>">Kontak</a></li>
     </ul>
   </div>
 </nav>
@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <h1>STASIANA</h1>
   <p>Sistem Pelaporan Lokasi Rawan Bencana</p> 
   <h5>Media pelaporan masyarakat terkait informasi potensi rawan bencana di daerah sekitar</h5> <br> <br> <br>
-  <button class="btn btn-warning" style="background-color: #D2691E; "><a style="color: white" href="<?php echo site_url('welcome/login')?>">LOGIN SEBAGAI</a></button>
+  <a style="background-color:#D2691E" href="<?php echo site_url('Welcome/login')?>" class="btn btn-warning">MASUK SEBAGAI</a> <br> <br> <br>
 </div>
 </div>
 </div>

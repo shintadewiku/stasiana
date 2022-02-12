@@ -6,8 +6,8 @@ class Adminbpbd extends CI_Controller{
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 	
-		if($this->session->userdata('status') != "welcome"){
-			redirect(base_url("welcome"));
+		if($this->session->userdata('status') != "Welcome"){
+			redirect(base_url("Welcome"));
 		}
 	}
 

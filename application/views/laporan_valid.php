@@ -27,17 +27,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </ul>
   </div>
 </nav>
-  <?php require 'keluar.php' ?> <br>
-<div id="body" > <br> <br>
 
+<div id="body" > <br> <br>
+  <?php require 'keluar.php' ?> <br>
 <div class="container">
 	<!-- <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" style="background-color: navy; opacity: 0.8; color: white;">DATA LAPORAN</a>
 </nav> -->
-	<!-- <a href="laporan" class="btn btn-lg" style="background-color: white; color: #2262cc;">DATA LAPORAN</a> --> <br>
+	<!-- <a href="laporan" class="btn btn-lg" style="background-color: white; color: #2262cc;">DATA LAPORAN</a> --> <br> <br> <br>
 	<!-- <tr><h2 style="text-align: left; color: black; background-color: white;">DATA LAPORAN</h2></tr> -->
 	<div class="table-responsive">
-	<h2 style="color: white">Data Laporan</h2> <br>
+	<h2 style="color: white">Data Laporan Tervalidasi</h2> <br>
 		<table style="background-color: white; opacity: 0.9; text-align: center; border-color: white;" class="table table-hover"; border="0.5"> 
 			<tr style="background-color: #2262cc; opacity: 0.9; text-align: center; color: white; font-size: 14px; ">
 			<th style="text-align: center; white-space: nowrap;">Kode Laporan</th>
@@ -78,8 +78,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				echo "<td>".$data->lokasi."</td>";
 				echo "<td>".$data->deskripsi."</td>";
 				echo "<td><img src='".base_url("images/".$data->bukti)."'width='100' height='100'></td>";
-				echo "<td><a href=".site_url('Welcome/verif/').$data->no.">Diverifikasi</a></td>";
-				echo "<td><a href=".site_url('Welcome/verifTolak/').$data->no.">Verifikasi Ditolak</a></td>";
+				echo "<td><a href=".site_url('Welcome/tindakLanjut/').$data->no.">Ditindak Lanjuti</a></td>";
+				echo "<td><a href=".site_url('Welcome/tindakLanjutTolak/').$data->no.">Tindaklanjut Ditolak</a></td>";
 					echo "</tr>";
 			
  }
@@ -93,6 +93,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 </div>
 
-</body>
+</body> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<?php require 'footer.php' ?>
 </html>

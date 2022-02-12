@@ -4,16 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Welcome extends CI_Controller {
 
 	//private $fb;
-	function __construct() {
+		function __construct() {
         parent:: __construct();
         $this->load->library('google');
-		//$this->load->library("facebooksdk");
-		//$this->fb = $this->facebooksdk;
-		$this->load->model('modelcrud');$this->load->helper(array('form', 'url'));
+		$this->load->model('Modelcrud');$this->load->helper(array('form', 'url'));
 	}
 
 	public function index(){
-		// $this->data['hasil'] = $this->modelcrud->getUser('data_user');
 		$this ->load-> view ('beranda');
 	}
 
@@ -23,7 +20,7 @@ class Welcome extends CI_Controller {
 		$data['google_login_url']=$this->google->get_login_url();
 		$this->load->view('login_masyarakat',$data);
 
-		$cb = "http://localhost/tubes/index.php/welcome/callback";
+		$cb = "http://localhost/tubes/index.php/Welcome/callback";
 		//$url = $this->fb->getLoginUrl($cb);
 		//echo "<a href='$url'> Login With Facebook</a>";
 	}
@@ -53,59 +50,6 @@ class Welcome extends CI_Controller {
 		redirect(base_url());
 	}
 
-	//login facebook
-
-	// public function callback()
-	// {
-	// 	$act = $this->fb->getAccessToken();
-	// 	$data = $this->fb->getUserData($act);
-	// 	print_r($data);
-	// }
-	// public function loginn()
-	// {
-		
-	// 	if($this->session->userdata('loginn') == true){
-	// 		redirect('welcome/profile');
-	// 	}
-		
-		
-	// 	if ($this->facebook->logged_in())
-	// 	{
-	// 		$user = $this->facebook->user();
-
-	// 		if ($user['code'] === 200)
-	// 		{
-	// 			$this->session->set_userdata('loginn',true);
-	// 			$this->session->set_userdata('user_profile',$user['data']);
-	// 			redirect('welcome/profile');
-	// 		}
-
-	// 	}
-		
-	// 	 else {
-	
-	// 		$contents['link'] = $this->facebook->login_url();
-		
-	// 		$this->load->view('welcome_message',$contents);
-		
-	
-	// 	}
-	// }
-	
-	// public function profile(){
-	// 	if($this->session->userdata('loginn') != true){
-	// 		redirect('');
-	// 	}
-	// 	$contents['user_profile'] = $this->session->userdata('user_profile');
-	// 	$this->load->view('profile',$contents);
-		
-	// }
-	
-	// public function log_out(){
-	// 	$this->session->sess_destroy();
-	// 	redirect('');
-		
-	// }
 
 	//login bnpb
 
@@ -120,7 +64,7 @@ class Welcome extends CI_Controller {
 			'username' => $username,
 			'password' => md5($password)
 			);
-		$cek = $this->modelcrud->cek_login("adminn",$where)->num_rows();
+		$cek = $this->Modelcrud->cek_login("adminn",$where)->num_rows();
 		if($cek > 0){
 
 			$data_session = array(
@@ -146,7 +90,7 @@ class Welcome extends CI_Controller {
 	//login bpbd
 
 	public function login_bpbd(){
-		$this -> load -> view ('login_bpbd');
+		$this ->load-> view ('login_bpbd');
 	}
 
 	public function aksi_bpbd(){
@@ -156,7 +100,7 @@ class Welcome extends CI_Controller {
 			'username' => $username,
 			'password' => md5($password)
 			);
-		$cek = $this->modelcrud->cek_login("bpbd",$where)->num_rows();
+		$cek = $this->Modelcrud->cek_login("bpbd",$where)->num_rows();
 		if($cek > 0){
 
 			$data_session = array(
@@ -192,7 +136,7 @@ class Welcome extends CI_Controller {
 			'username' => $username,
 			'password' => md5($password)
 			);
-		$cek = $this->modelcrud->cek_login("dinas",$where)->num_rows();
+		$cek = $this->Modelcrud->cek_login("dinas",$where)->num_rows();
 		if($cek > 0){
 
 			$data_session = array(
@@ -218,150 +162,161 @@ class Welcome extends CI_Controller {
 	//form lapor
 
 	public function form_lapor(){
-		// $this->data['hasil'] = $this->modelcrud->getUser('data_laporan');
-		$this -> load -> view ('form_lapor');
+		$this ->load->view ('form_lapor');
 	}
-	public function lacak(){
-		$this -> load -> view ('lacak');
+	public function kode(){
+		$data['data_laporan'] = $this->Modelcrud->get_kode();
+    	$this->load->view ('kode', $data);
 	}
 	public function berita(){
-		$this -> load -> view ('berita');
+		$this->load->view ('berita');
 	}
 	public function login(){
-		$this -> load -> view ('login');
+		$this->load->view ('login');
 	}
 	public function bantuan(){
-		$this -> load -> view ('bantuan');
+		$this->load->view ('bantuan');
 	}
 	public function laporan(){
-		/*$this->data['hasil'] = $this->modelcrud->getUser('data_laporan');
-		$this -> load -> view ('laporan', $this->data);*/
-		$data['data_laporan'] = $this->modelcrud->getUser();
-		$this ->load-> view ('laporan', $data);
+		$data['data_laporan'] = $this->Modelcrud->getUser();
+		$this->load->view ('laporan', $data);
 	}
 	// public function bukti(){
 	// 	$this -> load -> view ('bukti');
 	// }
 	public function insert(){
-		/*$nama = $_POST['nama'];
-		$ktp = $_POST['ktp'];
-		$email = $_POST['email'];
-		$tel = $_POST['tel'];
-		$jenis = $_POST['jenis'];
-		$alamat = $_POST['alamat'];
-		$provinsi = $_POST['provinsi'];
-		$pos = $_POST['pos'];
-		$lokasi = $_POST['lokasi'];
-		$deskripsi = $_POST['deskripsi'];
+		// $no = $_POST['no'];
+		// $nama = $_POST['nama'];
+		// $ktp = $_POST['ktp'];
+		// $email = $_POST['email'];
+		// $tel = $_POST['tel'];
+		// $jenis = $_POST['jenis'];
+		// $alamat = $_POST['alamat'];
+		// $provinsi = $_POST['provinsi'];
+		// $pos = $_POST['pos'];
+		// $lokasi = $_POST['lokasi'];
+		// $deskripsi = $_POST['deskripsi'];
+		// $bukti = $_POST['bukti'];
 
-		$bukti = $_POST['bukti'];
-
-		$data = array('nama' => $nama, 'ktp' => $ktp, 'email' => $email, 'tel' => $tel, 'jenis' => $jenis, 'alamat' => $alamat, 'provinsi' => $provinsi, 'pos' => $pos, 'lokasi' => $lokasi, 'deskripsi' => $deskripsi);
-$tambah = $this->modelcrud->tambahData('data_laporan',$data);
- 		if($tambah > 0){
- 			redirect('welcome/laporan');
- 		} else {
- 			echo 'GAGAL disimpan';
- 		}*/
+// 		$data = array('nama' => $nama, 'ktp' => $ktp, 'email' => $email, 'tel' => $tel, 'jenis' => $jenis, 'alamat' => $alamat, 'provinsi' => $provinsi, 'pos' => $pos, 'lokasi' => $lokasi, 'deskripsi' => $deskripsi);
+// $tambah = $this->Modelcrud->tambahData('data_laporan',$data);
+//  		if($tambah > 0){
+//  			redirect('Welcome/laporan');
+//  		} else {
+//  			echo 'GAGAL disimpan';
+//  		}
  		$data = array();
 		if($this->input->post('submit')){
-			$upload = $this->modelcrud->upload();
+			$upload = $this->Modelcrud->upload();
 			
 			if($upload['result'] == "success"){
-				$this->modelcrud->tambahData($upload);
-				
-				redirect('welcome'); 
+				$this->Modelcrud->tambahData($upload);
+				redirect('Welcome/kode'); 
 			}else{
 				$data['message'] = $upload['error'];
 			}
 		}
 		//$this->load->view('form_lapor');
+
 }
 
 // public function upload(){
 // 		$this -> load -> view ('upload');
 // }
+	public function verif($no)
+	{
+		$data = array();
+		if($this->input->post('submit')){ 
+			if($this->Modelcrud->validation("update")){ 
+				$this->Modelcrud->m_verif($no);
+				redirect('Welcome/hasil_verif');
+			} 
+		}
+		$data['data_laporan'] = $this->Modelcrud->view_by($no);
+		$this->load->view('form_verif', $data);
+	}
+	public function hasil_verif()
+	{
+		$data['data_laporan'] = $this->Modelcrud->getUserVerifikasi();
+		$this->load->view('laporan_verif', $data);
+	}
+	public function verifTolak($no)
+	{
+		$data = array();
+		if($this->input->post('submit')){
+			if($this->Modelcrud->validation("update")){ 
+				$this->Modelcrud->m_verif($no); 
+				redirect('Welcome/laporan');
+			} 
+		}
+		$data['data_laporan'] = $this->Modelcrud->view_by($no);
+		$this->load->view('form_tolak_verif', $data);
+	}
+	public function valid($no)
+	{
+		$data = array();
+		if($this->input->post('submit')){ 
+			if($this->Modelcrud->validation("update")){ 
+				$this->Modelcrud->m_verif($no);
+				redirect('Welcome/hasil_valid');
+			} 
+		}
+		$data['data_laporan'] = $this->Modelcrud->view_by($no);
+		$this->load->view('form_valid', $data);
+	}
+	public function hasil_valid()
+	{
+		$data['data_laporan'] = $this->Modelcrud->getUserValidasi();
+		$this->load->view('laporan_valid', $data);
+	}
+	public function validTolak($no)
+	{
+		$data = array();
+		if($this->input->post('submit')){
+			if($this->Modelcrud->validation("update")){ 
+				$this->Modelcrud->m_verif($no); 
+				redirect('Welcome/hasil_verif');
+			} 
+		}
+		$data['data_laporan'] = $this->Modelcrud->view_by($no);
+		$this->load->view('form_tolak_valid', $data);
+	}
+	public function tindakLanjut($no)
+	{
+		$data = array();
+		if($this->input->post('submit')){ 
+			if($this->Modelcrud->validation("update")){ 
+				$this->Modelcrud->m_verif($no);
+				redirect('Welcome/hasil_tindakLanjut');
+			} 
+		}
+		$data['data_laporan'] = $this->Modelcrud->view_by($no);
+		$this->load->view('form_tindakLanjut', $data);
+	}
+	public function hasil_tindakLanjut()
+	{
+		$data['data_laporan'] = $this->Modelcrud->getUserTindaklanjut();
+		$this->load->view('laporan_tindakLanjut', $data);
+	}
+	public function tindakLanjutTolak($no)
+	{
+		$data = array();
+		if($this->input->post('submit')){
+			if($this->Modelcrud->validation("update")){ 
+				$this->Modelcrud->m_verif($no); 
+				redirect('Welcome/hasil_valid');
+			} 
+		}
+		$data['data_laporan'] = $this->Modelcrud->view_by($no);
+		$this->load->view('form_tolak_tindakLanjut', $data);
+	}
+
+	//lacak
+	public function lacak(){
+		//$this -> load -> view ('lacak');
+		$this->load->view ('lacak');
+
+	}
 
 
-	//	$bukti = $_POST['bukti'];
-
-// $target_dir = "uploads/";
-// $bukti = $target_dir . basename($_FILES["bukti"]["name"]);
-// $uploadOk = 1;
-// $imageFileType = strtolower(pathinfo($laporan,PATHINFO_EXTENSION));
-// // Check if image file is a actual image or fake image
-// if(isset($_POST["submit"])) {
-//     $check = getimagesize($_FILES["bukti"]["tmp_name"]);
-//     if($check !== false) {
-//         echo "File is an image - " . $check["mime"] . ".";
-//         $uploadOk = 1;
-//     } else {
-//         echo "File is not an image.";
-//         $uploadOk = 0;
-//     }
-// }
-// // Check if file already exists
-// if (file_exists($laporan)) {
-//     echo "Sorry, file already exists.";
-//     $uploadOk = 0;
-// }
-// // Check file size
-// if ($_FILES["bukti"]["size"] > 500000) {
-//     echo "Sorry, your file is too large.";
-//     $uploadOk = 0;
-// }
-// // Allow certain file formats
-// if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-// && $imageFileType != "gif" ) {
-//     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-//     $uploadOk = 0;
-// }
-// // Check if $uploadOk is set to 0 by an error
-// if ($uploadOk == 0) {
-//     echo "Sorry, your file was not uploaded.";
-// // if everything is ok, try to upload file
-// } else {
-//     if (move_uploaded_file($_FILES["bukti"]["tmp_name"], $laporan)) {
-//         echo "The file ". basename( $_FILES["bukti"]["name"]). " has been uploaded.";
-//     } else {
-//         echo "Sorry, there was an error uploading your file.";
-//     }
-// }
-
-// $data = array('nama' => $nama, 'ktp' => $ktp, 'email' => $email, 'tel' => $tel, 'jenis' => $jenis, 'alamat' => $alamat, 'provinsi' => $provinsi, 'pos' => $pos, 'lokasi' => $lokasi, 'deskripsi' => $deskripsi);
-// $tambah = $this->modelcrud->tambahData('data_laporan',$data);
-// 		if($tambah > 0){
-// 			redirect('welcome/laporan');
-// 		} else {
-// 			echo 'GAGAL disimpan';
-// 		}
-	//}
-
-	// public function delete($id){
-	// 	$hapus = $this->modelcrud->hapusData('data_user',$id);
-	// 	if($hapus > 0){
-	// 		redirect('welcome/index');
-	// 	} else {
-	// 		echo 'GAGAL disimpan';
-	// 	}
-	// }
-	// public function form_edit($id){
-
-	// 	$this->data['hasil'] = $this->modelcrud->getUser('data_jurusan');
-	// 	$this->data['dataEdit'] = $this->modelcrud->dataEdit('data_user',$id);
-	// 	$this->load->view('form_edit',$this->data);
-	// }
-	// public function update($id){
-	// 	$nama = $_POST['nama'];
-	// 	$alamat = $_POST['alamat'];
-	// 	$kode = $_POST['kode_jurusan'];
-	// 	$nim = $_POST['NIM'];
-	// 	$data = array('nama_lengkap' => $nama, 'alamat' => $alamat, 'kode_jurusan' => $kode, 'NIM' => $nim);
-	// 	$edit = $this->modelcrud->editData('data_user',$data,$id);
-	// 	if($edit > 0){
-	// 		redirect('welcome/index');
-	// 	} else {
-	// 		echo 'GAGAL disimpan';
-	// 	}
-	// }
 }

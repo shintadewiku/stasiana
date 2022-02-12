@@ -9,56 +9,53 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
   	<!-- Compiled and minified CSS -->
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+  	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css"> -->
   	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   	<!-- Compiled and minified JavaScript -->
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
-
-</head> 
+  	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+ -->
+</head>
 <body style="background-image: url(https://images2.alphacoders.com/719/719970.jpg)">
 <nav style="background: transparent; color: white; border-color: transparent;" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" style="color: white" href="<?php echo site_url('welcome/index')?>">STASIANA</a>
+      <a class="navbar-brand" style="color: white" href="<?php echo site_url('Welcome/index')?>">STASIANA</a>
       <br><br>
       <h6>Sistem Pelaporan Lokasi Rawan Bencana</h6>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="<?php echo site_url('welcome/index')?>">Beranda</a></li>
-      <li><a href="<?php echo site_url('welcome/lacak')?>">Lacak</a></li>
-      <li><a href="<?php echo site_url('welcome/berita')?>">Berita</a></li>
-      <li><a href="<?php echo site_url('welcome/bantuan')?>">Bantuan</a></li>
+      <li><a style="color: white" href="<?php echo site_url('Welcome/index')?>">Beranda</a></li>
+      <li><a style="color: white" href="<?php echo site_url('Welcome/lacak')?>">Lacak</a></li>
+      <li><a style="color: white" href="<?php echo site_url('Welcome/berita')?>">Berita</a></li>
+      <li><a style="color: white" href="<?php echo site_url('Welcome/bantuan')?>">Kontak</a></li>
     </ul>
   </div>
-</nav> <br> <br> <br>
-
-
+</nav>
 <div id="body" > <br> <br> <br>
 <div class="container">
 <div class = "text-center">
-		<h4 style="opacity: 0.9; color: white">LOGIN SEBAGAI PELAPOR</h4>
+		<h3 style="color: #DD4B39; text-shadow: 1px 0.5px #ccc7c7; border-color:white; border-width:5px; font-weight: bold; font-size: 30px;" class="page-header">LOGIN SEBAGAI PELAPOR</h3>
 
 		<div class="row" style="margin-top: 20px; margin-right: 250px; margin-left: 250px; margin-bottom: 50px">  <br> <br>
 
 				<?php 
 				if($this->session->userdata('sess_logged_in')==0){?>
-					<a href="<?=$google_login_url?>" class="btn btn-block btn-social btn-google" style="background-color: #DD4B39" ><i class="fa fa-google"></i>Sign in with Google</a> <br> <br>
+					<a href="<?=$google_login_url?>" class="btn btn-lg btn-social btn-google" style="color: white; font-weight: bold; background-color: #DD4B39" ><i class="fa fa-google"></i>Sign in with Google</a>  <br> <br><br> <br><br> <br>
 				<?php }else{?>
-					<a href="<?=base_url()?>auth/logout" class="btn btn-block btn-social btn-google" style="background-color: #DD4B39" ><i class="fa fa-google"></i>Google logout</a> <br> <br>
+					<a href="<?=base_url()?>auth/logout" class="btn btn-lg btn-social btn-google" style="background-color: #DD4B39" ><i class="fa fa-google"></i>Google logout</a> <br> <br>
 				<?php }
 				?>
 
-  				<a class="btn btn-block btn-social btn-facebook" style="background-color: #3B5998"> 
-    			<span class="fa fa-facebook"></span> Sign in with Facebook
+  				<!-- <a class="btn btn-lg btn-social btn-facebook" style="background-color: #3B5998"> 
+    			<span style="color: white; font-weight: bold;" class="fa fa-facebook"></span> Sign in with Facebook
   				</a> <br> <br>
 
-  				<a class="btn btn-block btn-social btn-twitter" style="background-color: #55ACEE">
-    			<span class="fa fa-twitter"></span> Sign in with Twitter 
-  				</a> <br> <br>
+  				<a class="btn btn-lg btn-social btn-twitter" style="background-color: #55ACEE">
+    			<span style="color: white; font-weight: bold;" class="fa fa-twitter"></span> Sign in with Twitter 
+  				</a> <br> <br> -->
 	
 			</div>
 		</div>
@@ -86,9 +83,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 </body>
+
 <?php 
 require 'footer.php'; 
 ?>
 
 </html>
-	
